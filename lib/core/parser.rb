@@ -2,7 +2,6 @@ module Questionnaire
   class Parser
 
     class << self
-     # extend ActiveSupport::Memoizable
 
       def load_fields(key, filename='questionnaires.yml')
         hash = fetch_from_cache_or_file(filename)

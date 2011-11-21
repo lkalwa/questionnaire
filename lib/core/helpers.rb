@@ -6,8 +6,15 @@ module Questionnaire
         yield section_name, section_body
       end
     end
+
+    def questionnaire_field_names questionnaire
+      Questionnaire::Parser.load_fields(questionnaire).values.inject([]) do  |memo, section_fields|
+        section_fields.keys.each { |e| memo << e.to_sym }
+        memo.flatten
+      end
+    end
   end
-  
+
   module ModelHelper
     
     def self.extended(base)
