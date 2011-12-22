@@ -13,6 +13,11 @@ module Questionnaire
         memo.flatten
       end
     end
+
+    def stepped_questionnaire_fields questionnaire, section_name
+      Parser.load_fields(questionnaire).fetch[section_name.to_s].keys.each
+      end
+    end
   end
 
   module ModelHelper
