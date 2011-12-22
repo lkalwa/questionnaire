@@ -15,8 +15,7 @@ module Questionnaire
     end
 
     def stepped_questionnaire_fields questionnaire, section_name
-      Parser.load_fields(questionnaire).fetch[section_name.to_s].keys.each
-      end
+      Parser.load_fields(questionnaire).fetch[section_name.to_s].keys
     end
   end
 
@@ -39,7 +38,7 @@ module Questionnaire
   module FormHelper
 
     def questionnaire(key, object, options={})
-      fields = Parser.load_fields(key)
+      Parser.load_fields(key)
       simple_form_for(object, options) do |f|
         f.simple_fields_for object.send(key.to_s.singularize.to_sym) do |sf|
           Formatter.create_form_body(object, key, fields, sf)
