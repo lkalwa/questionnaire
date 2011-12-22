@@ -15,7 +15,7 @@ module Questionnaire
     end
 
     def stepped_questionnaire_fields questionnaire, section_name
-      Parser.load_fields(questionnaire).fetch[section_name.to_s].keys.each
+      Parser.load_fields(questionnaire).fetch[section_name.to_s].keys
     end
   end
 
