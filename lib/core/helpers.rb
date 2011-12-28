@@ -23,7 +23,7 @@ module Questionnaire
 
     def stepped_questionnaire_fields_with_section questionnaire, *section_names
       section_names.each do |section_name|
-        Parser.load_fields(questionnaire).fetch(section_name.to_s).each do |field_name|
+        Parser.load_fields(questionnaire).fetch(section_name.to_s).keys.each do |field_name|
           yield section_name, field_name
         end
       end
