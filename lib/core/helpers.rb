@@ -28,6 +28,11 @@ module Questionnaire
         end
       end
     end
+
+    def questionnaire_sections questionnaire
+      Parser.load_field(questionnaire).keys
+    end
+
   end
 
   module ModelHelper
