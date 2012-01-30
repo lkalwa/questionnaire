@@ -30,7 +30,7 @@ module Questionnaire
     end
 
     def questionnaire_sections questionnaire
-      Parser.load_field(questionnaire).keys
+      Parser.load_fields(questionnaire).keys
     end
 
   end
