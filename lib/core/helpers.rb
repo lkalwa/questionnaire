@@ -14,6 +14,10 @@ module Questionnaire
       end
     end
 
+    def stepped_questionnaire_fields_with_options questionnaire, section
+      Questionnaire::Parser.load_fields(questionnaire.to_s).fetch(section.to_s)
+    end
+
     def stepped_questionnaire_fields questionnaire, *section_names
       section_names.inject([]) do |memo, section_name|
         memo << Parser.load_fields(questionnaire).fetch(section_name.to_s).keys
