@@ -5,7 +5,6 @@ module Questionnaire
 
     class << self
       include ActionView::Helpers
-      extend ActiveSupport::Memoizable
 
       def create_form_body(object, key, fields, form)
         output = content_tag(Questionnaire.title_tag, I18n.t(:"questionnaires.#{key}.label"))
