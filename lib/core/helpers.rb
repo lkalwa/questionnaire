@@ -45,9 +45,8 @@ module Questionnaire
 
     #returns section containing passed field
     def field_section questionnaire, field
-      Questionnaire::Parser.load_fields(:need_map).find { |section ,fields| fields.include?(field) }.first
+      Questionnaire::Parser.load_fields(questionnaire).find { |section, fields| fields.include?(field) }.first
     end
-
   end
 
   module ModelHelper
