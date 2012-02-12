@@ -1,12 +1,14 @@
 module Questionnaire
   module FieldsHelper
-    
+
+    #yields section name and fields of section
     def questionnaire_fields questionnaire
       Parser.load_fields(questionnaire).each do |section_name, section_body|
         yield section_name, section_body
       end
     end
 
+    # returns array with fields from given questionnaire
     def questionnaire_field_names questionnaire
       Questionnaire::Parser.load_fields(questionnaire).values.inject([]) do  |memo, section_fields|
         section_fields.keys.each { |e| memo << e.to_sym }
@@ -14,10 +16,12 @@ module Questionnaire
       end
     end
 
+    #returns array with fields with its options for given questionnaire and section
     def stepped_questionnaire_fields_with_options questionnaire, section
       Questionnaire::Parser.load_fields(questionnaire.to_s).fetch(section.to_s)
     end
 
+    #returns array with fields from given questionnaire and section
     def stepped_questionnaire_fields questionnaire, *section_names
       section_names.inject([]) do |memo, section_name|
         memo << Parser.load_fields(questionnaire).fetch(section_name.to_s).keys
@@ -25,6 +29,7 @@ module Questionnaire
       end
     end
 
+    #yields section name and field for given questionnaire and section(s)
     def stepped_questionnaire_fields_with_section questionnaire, *section_names
       section_names.each do |section_name|
         Parser.load_fields(questionnaire).fetch(section_name.to_s).keys.each do |field_name|
@@ -33,8 +38,14 @@ module Questionnaire
       end
     end
 
+    #returns array with sections of given questionnaire
     def questionnaire_sections questionnaire
       Parser.load_fields(questionnaire).keys
+    end
+
+    #returns section containing passed field
+    def field_section questionnaire, field
+      Questionnaire::Parser.load_fields(:need_map).find { |section ,fields| fields.include?(field) }.first
     end
 
   end

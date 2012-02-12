@@ -21,7 +21,5 @@ module Questionnaire
 
   def self.setup
     yield self
-  end
-
-
+    end
 end
